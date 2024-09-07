@@ -1,0 +1,261 @@
+openapi: 3.0.0
+info:
+  title: Organization API
+  version: 1.0.0
+paths:
+  /organizations:
+    get:
+      summary: Получение списка всех организаций
+      operationId: getOrganizations
+      responses:
+        '200':
+          description: Успешный ответ с массивом организаций
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organization'
+    post:
+      summary: Добавление новой организации
+      operationId: createOrganization
+      requestBody:
+        description: Объект новой организации
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Organization'
+      responses:
+        '201':
+          description: Организация успешно создана
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '400':
+          description: Некорректный запрос
+
+  /organizations/{id}:
+    get:
+      summary: Получение организации по ID
+      operationId: getOrganizationById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+          description: Уникальный идентификатор организации
+      responses:
+        '200':
+          description: Успешный ответ с объектом организации
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '404':
+          description: Организация с указанным ID не найдена
+
+    put:
+      summary: Обновление организации по ID
+      operationId: updateOrganizationById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+          description: Уникальный идентификатор организации
+      requestBody:
+        description: Обновленные данные организации
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Organization'
+      responses:
+        '200':
+          description: Организация успешно обновлена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '404':
+          description: Организация с указанным ID не найдена
+        '400':
+          description: Некорректный запрос
+
+    delete:
+      summary: Удаление организации по ID
+      operationId: deleteOrganizationById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+          description: Уникальный идентификатор организации
+      responses:
+        '204':
+          description: Организация успешно удалена
+        '404':
+          description: Организация с указанным ID не найдена
+
+  /organizations/group-by-address:
+    get:
+      summary: Группировка объектов по значению поля officialAddress и возврат количества элементов в каждой группе
+      operationId: groupByOfficialAddress
+      responses:
+        '200':
+          description: Группировка выполнена успешно
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    officialAddress:
+                      $ref: '#/components/schemas/Address'
+                    count:
+                      type: integer
+                      description: "Количество организаций в группе с данным адресом"
+        '400':
+          description: Ошибка в запросе
+
+  /organizations/count-by-employees:
+    get:
+      summary: Возвращает количество организаций, у которых значение поля employeesCount больше заданного
+      operationId: countByEmployeesCount
+      parameters:
+        - name: count
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+            description: "Значение количества сотрудников, с которым будет происходить сравнение"
+      responses:
+        '200':
+          description: Количество объектов успешно возвращено
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    description: "Количество организаций, у которых число сотрудников больше заданного"
+        '400':
+          description: Ошибка в запросе
+
+  /organizations/search-by-fullname:
+    get:
+      summary: Поиск организаций по подстроке в поле fullName
+      operationId: searchByFullName
+      parameters:
+        - name: substring
+          in: query
+          required: true
+          schema:
+            type: string
+            description: "Подстрока, которая будет искаться в поле fullName"
+      responses:
+        '200':
+          description: Массив объектов, соответствующих критерию поиска
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organization'
+        '400':
+          description: Некорректный запрос
+
+
+
+
+
+components:
+  schemas:
+    Organization:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: "Уникальный идентификатор, генерируется автоматически, значение должно быть больше 0."
+          minimum: 1
+        name:
+          type: string
+          description: "Название организации, не может быть null или пустой строкой."
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        creationDate:
+          type: string
+          format: date
+          description: "Дата создания организации, генерируется автоматически, не может быть null."
+        annualTurnover:
+          type: integer
+          format: int32
+          description: "Годовой оборот организации, значение должно быть больше 0."
+          minimum: 1
+        fullName:
+          type: string
+          description: "Полное название организации, не может быть пустым или длиной более 1678 символов."
+          maxLength: 1678
+        employeesCount:
+          type: integer
+          format: int64
+          description: "Количество сотрудников, не может быть null и должно быть больше 0."
+          minimum: 1
+        type:
+          $ref: '#/components/schemas/OrganizationType'
+        officialAddress:
+          $ref: '#/components/schemas/Address'
+      required:
+        - id
+        - name
+        - coordinates
+        - creationDate
+        - annualTurnover
+        - fullName
+        - employeesCount
+        - type
+        - officialAddress
+
+    Coordinates:
+      type: object
+      properties:
+        x:
+          type: integer
+          format: int32
+          description: "Координата X, максимальное значение 76, не может быть null."
+          maximum: 76
+        y:
+          type: integer
+          format: int32
+          description: "Координата Y, значение должно быть больше -155 и не может быть null."
+          minimum: -155
+      required:
+        - x
+        - y
+
+    Address:
+      type: object
+      properties:
+        zipCode:
+          type: string
+          description: "Почтовый индекс. Может быть null."
+    
+    OrganizationType:
+      type: string
+      enum:
+        - PUBLIC
+        - TRUST
+        - OPEN_JOINT_STOCK_COMPANY
+      description: "Тип организации."
