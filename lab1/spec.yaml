@@ -2,11 +2,41 @@ openapi: 3.0.0
 info:
   title: Organization API
   version: 1.0.0
+tags:
+  - name: Organizations
+    description: Операции, связанные с организациями
+  - name: OrgManager
+    description: Операции второго сервиса
 paths:
   /organizations:
     get:
+      tags:
+        - Organizations
       summary: Получение списка всех организаций
       operationId: getOrganizations
+      parameters:
+        - name: creationDate
+          in: query
+          description: Фильтр по дате создания организации (где дата - дата, после которой создана организация)
+          required: false
+          schema:
+              type: string
+              format: date
+        - name: annualTurnover
+          in: query
+          description: Фильтр по годовому обороту организации (где - это меньше указанного значения)
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+        - name: sort
+          in: query
+          description: Поле для сортировки и направление (пример:name,asc или creationDate,desc)
+          required: false
+          schema:
+            type: string
+            example: "asc(name)"
       responses:
         '200':
           description: Успешный ответ с массивом организаций
@@ -16,7 +46,13 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Organization'
+        '400':
+          description: Ошибка в запросе. Неправильно, попробуй ещё
+        '500':
+          description: Внутренняя ошибка сервера
     post:
+      tags:
+        - Organizations
       summary: Добавление новой организации
       operationId: createOrganization
       requestBody:
@@ -35,9 +71,13 @@ paths:
                 $ref: '#/components/schemas/Organization'
         '400':
           description: Некорректный запрос
+        '500':
+          description: Внутренняя ошибка сервера
 
   /organizations/{id}:
     get:
+      tags:
+        - Organizations
       summary: Получение организации по ID
       operationId: getOrganizationById
       parameters:
@@ -57,8 +97,12 @@ paths:
                 $ref: '#/components/schemas/Organization'
         '404':
           description: Организация с указанным ID не найдена
+        '500':
+          description: Внутренняя ошибка сервера
 
     put:
+      tags:
+        - Organizations
       summary: Обновление организации по ID
       operationId: updateOrganizationById
       parameters:
@@ -87,8 +131,12 @@ paths:
           description: Организация с указанным ID не найдена
         '400':
           description: Некорректный запрос
+        '500':
+          description: Внутренняя ошибка сервера
 
     delete:
+      tags:
+        - Organizations
       summary: Удаление организации по ID
       operationId: deleteOrganizationById
       parameters:
@@ -104,9 +152,13 @@ paths:
           description: Организация успешно удалена
         '404':
           description: Организация с указанным ID не найдена
+        '500':
+          description: Внутренняя ошибка сервера
 
   /organizations/group-by-address:
     get:
+      tags:
+        - Organizations
       summary: Группировка объектов по значению поля officialAddress и возврат количества элементов в каждой группе
       operationId: groupByOfficialAddress
       responses:
@@ -126,9 +178,13 @@ paths:
                       description: "Количество организаций в группе с данным адресом"
         '400':
           description: Ошибка в запросе
+        '500':
+          description: Внутренняя ошибка сервера
 
   /organizations/count-by-employees:
     get:
+      tags:
+        - Organizations
       summary: Возвращает количество организаций, у которых значение поля employeesCount больше заданного
       operationId: countByEmployeesCount
       parameters:
@@ -152,9 +208,13 @@ paths:
                     description: "Количество организаций, у которых число сотрудников больше заданного"
         '400':
           description: Ошибка в запросе
+        '500':
+          description: Внутренняя ошибка сервера
 
   /organizations/search-by-fullname:
     get:
+      tags:
+        - Organizations
       summary: Поиск организаций по подстроке в поле fullName
       operationId: searchByFullName
       parameters:
@@ -175,9 +235,114 @@ paths:
                   $ref: '#/components/schemas/Organization'
         '400':
           description: Некорректный запрос
+        '500':
+          description: Внутренняя ошибка сервера
 
+  /merge/{id1}/{id2}/{new-name}/{new-address}:
+    post:
+      tags:
+        - OrgManager
+      summary: Объединить две организации
+      description: Объединить две организации, создав новую с заданным именем и адресом, и зачислив в неё всех сотрудников исходных организаций.
+      parameters:
+        - name: id1
+          in: path
+          description: ID первой организации
+          required: true
+          schema:
+            type: integer
+        - name: id2
+          in: path
+          description: ID второй организации
+          required: true
+          schema:
+            type: integer
+        - name: new-name
+          in: path
+          description: Новое имя объединённой организации
+          required: true
+          schema:
+            type: string
+        - name: new-address
+          in: path
+          description: Новый адрес объединённой организации
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Организации успешно объединены
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  newOrgId:
+                    type: integer
+                    description: ID новой объединённой организации
+                  message:
+                    type: string
+                    example: "Организации успешно объединены"
+        '400':
+          description: Ошибка валидации параметров
+        '404':
+          description: Одна или обе организации не найдены
+        '500':
+          description: Внутренняя ошибка сервера
+    servers:
+      - url: /orgmanager
 
-
+  /hire/{id}:
+    post:
+      tags:
+        - OrgManager
+      summary: Добавить нового сотрудника в организацию
+      description: Добавить нового сотрудника в организацию по её ID.
+      parameters:
+        - name: id
+          in: path
+          description: ID организации, в которую добавляется новый сотрудник
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Информация о новом сотруднике
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                employeeName:
+                  type: string
+                  description: Имя сотрудника
+                  example: "Иван Иванов"
+                position:
+                  type: string
+                  description: Должность сотрудника
+                  example: "Менеджер"
+      responses:
+        '200':
+          description: Сотрудник успешно добавлен
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  employeeId:
+                    type: integer
+                    description: ID нового сотрудника
+                  message:
+                    type: string
+                    example: "Сотрудник успешно добавлен"
+        '400':
+          description: Ошибка валидации данных сотрудника
+        '404':
+          description: Организация не найдена
+        '500':
+          description: Внутренняя ошибка сервера
+    servers:
+      - url: /orgmanager
 
 
 components:
