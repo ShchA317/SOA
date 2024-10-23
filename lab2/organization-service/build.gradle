@@ -1,28 +1,38 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.3.4'
-    id 'io.spring.dependency-management' version '1.1.6'
+    id 'war'
 }
 
-group = 'soa.lab2.organization'
-version = '0.0.1-SNAPSHOT'
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
-}
+group = 'ru.neegroom'
+version = '1.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+targetCompatibility = '17'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    // Jakarta Servlet API
+    providedCompile 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+
+    // Resteasy JAX-RS
+    implementation 'org.jboss.resteasy:resteasy-jaxrs:3.15.6.Final'
+
+    // Jakarta WS-RS API
+    implementation 'jakarta.ws.rs:jakarta.ws.rs-api:4.0.0'
+
+    // Jackson
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
+    implementation 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.17.0'
+    implementation 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-base:2.17.0'
+
+    // Log4j
+    implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+    implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.20.0'
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
