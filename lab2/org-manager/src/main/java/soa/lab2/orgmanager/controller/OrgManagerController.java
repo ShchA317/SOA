@@ -13,7 +13,6 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/orgmanager")
-// TODO: создать ControllerAdvice exceptionService
 public class OrgManagerController implements OrgmanagerApi {
 
     private final OrgManagerService orgManagerService;
