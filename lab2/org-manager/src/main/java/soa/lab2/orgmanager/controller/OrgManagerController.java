@@ -39,8 +39,12 @@ public class OrgManagerController implements OrgmanagerApi {
             @PathVariable("new-name") String newName,
             @PathVariable("new-address") String newAddress) {
 
-        orgManagerService.mergeOrganizations(id1, id2, newName, newAddress);
+        int id = orgManagerService.mergeOrganizations(id1, id2, newName, newAddress);
+        OrgmanagerMergeId1Id2NewNameNewAddressPost200Response response =
+                new OrgmanagerMergeId1Id2NewNameNewAddressPost200Response()
+                        .newOrgId(id)
+                        .message("Поздравляем, вы создали корпорацию тысячелетия!");
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
