@@ -1,15 +1,10 @@
 package soa.lab2.organization;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 
-@Getter
-@Setter
 public class Organization {
 
     @NotNull(message = "Organization cannot be null")
@@ -32,4 +27,52 @@ public class Organization {
     @NotNull(message = "Creation date cannot be null")
     @PastOrPresent(message = "Creation date must be in the past or present")
     private String creationDate;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getOfficialAddress() {
+        return officialAddress;
+    }
+
+    public void setOfficialAddress(String officialAddress) {
+        this.officialAddress = officialAddress;
+    }
+
+    public int getEmployeesCount() {
+        return employeesCount;
+    }
+
+    public void setEmployeesCount(int employeesCount) {
+        this.employeesCount = employeesCount;
+    }
+
+    public int getAnnualTurnover() {
+        return annualTurnover;
+    }
+
+    public void setAnnualTurnover(int annualTurnover) {
+        this.annualTurnover = annualTurnover;
+    }
+
+    public String getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
+    }
 }
