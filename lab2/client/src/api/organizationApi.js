@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-    baseURL: 'http://localhost:5000', // Замените на реальный URL API
+    baseURL: '/organization-1.0.1-SNAPSHOT/api',
     headers: {
         'Content-Type': 'application/json',
     },
