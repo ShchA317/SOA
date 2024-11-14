@@ -2,7 +2,7 @@
     <deployment>
         <dependencies>
             <module name="org.jboss.resteasy.resteasy-jackson2-provider" services="import" />
-            <module name="com.fasterxml.jackson.datatype:jackson-datatype-jsr310" services="import" />
+<!--            <module name="com.fasterxml.jackson.datatype:jackson-datatype-jsr310" services="import" />-->
         </dependencies>
     </deployment>
 </jboss-deployment-structure>
