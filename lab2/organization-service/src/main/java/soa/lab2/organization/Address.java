@@ -1,8 +1,10 @@
 package soa.lab2.organization;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class Address {
     private String zipCode;
 }

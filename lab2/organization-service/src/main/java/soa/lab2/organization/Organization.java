@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -25,7 +25,7 @@ public class Organization {
     private Coordinates coordinates;
 
     @NotNull
-    private LocalDate creationDate;
+    private Date creationDate;
 
     @Positive
     private int annualTurnover;

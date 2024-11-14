@@ -1,11 +1,8 @@
 package soa.lab2.organization;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import jakarta.ws.rs.ext.ContextResolver;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
 
@@ -13,7 +10,6 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import java.util.*;
-import java.time.LocalDate;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Path("/organizations")
@@ -21,8 +17,8 @@ import java.util.concurrent.atomic.AtomicLong;
 @Consumes(MediaType.APPLICATION_JSON)
 public class OrganizationResource {
 
-    private static Map<Long, Organization> organizations = new HashMap<>();
-    private static AtomicLong idGenerator = new AtomicLong(1);
+    private static final Map<Long, Organization> organizations = new HashMap<>();
+    private static final AtomicLong idGenerator = new AtomicLong(1);
 
     @GET
     public Response getAllOrganizations() {
@@ -42,7 +38,6 @@ public class OrganizationResource {
     @POST
     public Response createOrganization(@Valid Organization org) {
         org.setId(idGenerator.getAndIncrement());
-        org.setCreationDate(LocalDate.now());
 
         organizations.put(org.getId(), org);
         return Response.status(Response.Status.CREATED).entity(org).build();
