@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import OrganizationForm from "./pages/OrganizationForm";
 import OrganizationPage from "./pages/OrganizationPage";
+import DeleteOrganizationPage from "./pages/DeleteOrganizationPage";
 
 function Home() {
     return (
@@ -26,6 +27,9 @@ function App() {
                   <li>
                       <Link to="/get-organization/">Получить организацию</Link>
                   </li>
+                  <li>
+                      <Link to="/delete-organization/">Удалить организацию</Link>
+                  </li>
               </ul>
           </nav>
           <Routes>
@@ -33,6 +37,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/get-organization" element={<OrganizationPage/>}/>
               <Route path="/add-organization" element={<OrganizationForm onSubmit={(data) => console.log("Данные формы:", data)} />} />
+              <Route path="/delete-organization" element={<DeleteOrganizationPage />} />
           </Routes>
       </Router>
   );

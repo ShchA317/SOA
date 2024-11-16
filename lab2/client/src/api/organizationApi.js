@@ -20,7 +20,7 @@ export const createOrganization = (data) => apiClient.post('/organizations', dat
 export const updateOrganization = (id, data) => apiClient.put(`/organizations/${id}`, data);
 
 // Удаление организации
-export const deleteOrganization = (id) => apiClient.delete(`/organizations/${id}`);
+export const removeOrganization = (id) => apiClient.delete(`/organizations/${id}`);
 
 // Прочие API методы, такие как группировка и фильтрация
 export const groupByOfficialAddress = () => apiClient.get('/organizations/group-by-address');
