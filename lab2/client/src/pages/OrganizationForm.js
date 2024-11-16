@@ -5,7 +5,6 @@ import * as yup from "yup";
 import {createOrganization} from "../api/organizationApi";
 
 const schema = yup.object().shape({
-    id: yup.number().positive().integer().required("ID обязателен"),
     name: yup.string().required("Название организации обязательно"),
     coordinates: yup.object({
         x: yup.number().max(76, "X не может быть больше 76").required("Координата X обязательна"),
@@ -28,8 +27,8 @@ const OrganizationForm = ( ) => {
 
     const onSubmit = async (data) => {
         try {
-            await createOrganization(data);
-            alert("Организация успешно добавлена");
+            const result = await createOrganization(data);
+            alert("Организация успешно добавлена. ID: " + result.data.id);
         } catch (error) {
             console.error("Ошибка при добавлении организации:", error);
             alert("Не удалось добавить организацию");
@@ -38,11 +37,6 @@ const OrganizationForm = ( ) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
-                <label>ID:</label>
-                <input type="number" {...register("id")} />
-                <p>{errors.id?.message}</p>
-            </div>
 
             <div>
                 <label>Название организации:</label>
