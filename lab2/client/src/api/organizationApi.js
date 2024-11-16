@@ -17,7 +17,7 @@ export const getOrganizationById = (id) => apiClient.get(`/organizations/${id}`)
 export const createOrganization = (data) => apiClient.post('/organizations', data);
 
 // Обновление организации по ID
-export const updateOrganization = (id, data) => apiClient.put(`/organizations/${id}`, data);
+export const refreshOrganization = (id, data) => apiClient.put(`/organizations/${id}`, data);
 
 // Удаление организации
 export const removeOrganization = (id) => apiClient.delete(`/organizations/${id}`);
