@@ -20,7 +20,7 @@ import java.util.stream.Stream;
 @Consumes(MediaType.APPLICATION_JSON)
 public class OrganizationResource {
 
-    private static final Map<Long, Organization> organizations = new HashMap<>();
+    public static final Map<Long, Organization> organizations = new HashMap<>();
     private static final AtomicLong idGenerator = new AtomicLong(1);
 
     @GET
@@ -89,9 +89,6 @@ public class OrganizationResource {
                     boolean ascending = "asc".equalsIgnoreCase(sortParams[1]);
                     Comparator<Organization> comparator = applySortOrder(getComparator(field), ascending);
 
-                    if (!ascending) {
-                        comparator = comparator.reversed();
-                    }
                     filteredStream = filteredStream.sorted(comparator);
                 }
             }
