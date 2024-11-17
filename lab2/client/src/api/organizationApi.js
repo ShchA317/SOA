@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-    baseURL: '/organization-1.0.6-SNAPSHOT/api',
+    baseURL: '/organization-1.0.7-SNAPSHOT/api',
     headers: {
         'Content-Type': 'application/json',
     },
@@ -16,18 +16,36 @@ export const getOrganizations = async (filters) => {
     return await apiClient.get("/organizations", { params });
 };
 
-// Получение организации по ID
 export const getOrganizationById = (id) => apiClient.get(`/organizations/${id}`);
 
-// Создание новой организации
 export const createOrganization = (data) => apiClient.post('/organizations', data);
 
-// Обновление организации по ID
 export const refreshOrganization = (id, data) => apiClient.put(`/organizations/${id}`, data);
 
-// Удаление организации
 export const removeOrganization = (id) => apiClient.delete(`/organizations/${id}`);
 
-// Прочие API методы, такие как группировка и фильтрация
+export const countByEmployeesCount = async (count) => {
+    try {
+        const response = await apiClient.get("/organizations/count-by-employees", {
+            params: { count },
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Ошибка при получении количества организаций:", error);
+        throw error;
+    }
+};
+
+export const searchByFullName = async (substring) => {
+    try {
+        const response = await apiClient.get("/organizations/search-by-fullname", {
+            params: { substring },
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Ошибка при поиске организаций:", error);
+        throw error;
+    }
+};
+
 export const groupByOfficialAddress = () => apiClient.get('/organizations/group-by-address');
-export const searchByFullName = (substring) => apiClient.get('/organizations/search-by-fullname', { params: { substring } });

@@ -111,6 +111,41 @@ public class OrganizationResource {
         };
     }
 
+    @GET
+    @Path("/count-by-employees")
+    public Response countByEmployeesCount(@QueryParam("count") Long count) {
+        if (count == null || count < 0) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Parameter 'count' must be a positive integer.")
+                    .build();
+        }
+
+        long resultCount = organizations.values().stream()
+                .filter(org -> org.getEmployeesCount() != null && org.getEmployeesCount() > count)
+                .count();
+
+        Map<String, Long> response = Map.of("count", resultCount);
+        return Response.ok(response).build();
+    }
+
+
+    @GET
+    @Path("/search-by-fullname")
+    public Response searchByFullName(@QueryParam("substring") String substring) {
+        if (substring == null || substring.isEmpty()) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Parameter 'substring' must not be empty.")
+                    .build();
+        }
+
+        List<Organization> filteredOrganizations = organizations.values().stream()
+                .filter(org -> org.getFullName() != null && org.getFullName().contains(substring))
+                .toList();
+
+        return Response.ok(filteredOrganizations).build();
+    }
+
+
     private Comparator<Organization> applySortOrder(Comparator<Organization> comparator, boolean ascending) {
         return ascending ? comparator : comparator.reversed();
     }

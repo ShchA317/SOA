@@ -5,6 +5,8 @@ import OrganizationPage from "./pages/OrganizationPage";
 import DeleteOrganizationPage from "./pages/DeleteOrganizationPage";
 import UpdateOrganizationPage from "./pages/UpdateOrganizationPage";
 import OrganizationListPage from "./pages/OrganizationListPage";
+import CountByEmployeesPage from "./pages/CountByEmployeesPage";
+import SearchByFullNamePage from "./pages/SearchByFullNamePage";
 
 function Home() {
     return (
@@ -26,6 +28,8 @@ function App() {
                   <li> <Link to="/delete-organization/">Удалить организацию</Link> </li>
                   <li> <Link to="/update-organization/">Обновить организацию</Link> </li>
                   <li> <Link to="/list-organization/">Получить список организаций</Link> </li>
+                  <li> <Link to="/count-organization/">Подсчитать количество организаций</Link> </li>
+                  <li> <Link to="/search-organization/">Искать список организаций по имени</Link> </li>
               </ul>
           </nav>
           <Routes>
@@ -35,6 +39,8 @@ function App() {
               <Route path="/delete-organization" element={<DeleteOrganizationPage />} />
               <Route path="/update-organization" element={<UpdateOrganizationPage />} />
               <Route path="/list-organization" element={<OrganizationListPage />} />
+              <Route path="/count-organization" element={<CountByEmployeesPage />} />
+              <Route path="/search-organization" element={<SearchByFullNamePage />} />
           </Routes>
       </Router>
   );
