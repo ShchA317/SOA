@@ -1,14 +1,20 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-    baseURL: '/organization-1.0.5-SNAPSHOT/api',
+    baseURL: '/organization-1.0.6-SNAPSHOT/api',
     headers: {
         'Content-Type': 'application/json',
     },
 });
 
-// Получение списка организаций
-export const getOrganizations = (params) => apiClient.get('/organizations', { params });
+export const getOrganizations = async (filters) => {
+    const params = {};
+    if (filters.creationDate) params.creationDate = filters.creationDate;
+    if (filters.annualTurnover) params.annualTurnover = filters.annualTurnover;
+    if (filters.sort) params.sort = filters.sort;
+
+    return await apiClient.get("/organizations", { params });
+};
 
 // Получение организации по ID
 export const getOrganizationById = (id) => apiClient.get(`/organizations/${id}`);
