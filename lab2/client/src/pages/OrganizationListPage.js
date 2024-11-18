@@ -17,6 +17,9 @@ const OrganizationListPage = () => {
         sort: "",
     });
 
+    const [currentPage, setCurrentPage] = useState(1); // Текущая страница
+    const [pageSize, setPageSize] = useState(5); // Количество записей на странице
+
     // Функция для загрузки списка организаций
     const fetchOrganizations = async () => {
         setLoading(true);
@@ -44,6 +47,23 @@ const OrganizationListPage = () => {
         const { name, value } = e.target;
         setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
     };
+
+    // Подсчет индексов начала и конца для текущей страницы
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    const paginatedOrganizations = organizations.slice(startIndex, endIndex);
+
+    // Обработчики для пагинации
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
+    const handlePageSizeChange = (e) => {
+        setPageSize(Number(e.target.value));
+        setCurrentPage(1); // Сбросить текущую страницу при изменении размера
+    };
+
+    const totalPages = Math.ceil(organizations.length / pageSize);
 
     return (
         <div>
@@ -93,6 +113,16 @@ const OrganizationListPage = () => {
             <div>
                 <h2>Организации</h2>
                 {organizations.length === 0 && !loading && <p>Организации не найдены</p>}
+
+                <label>
+                    Количество записей на странице:
+                    <select value={pageSize} onChange={handlePageSizeChange}>
+                        <option value={5}>5</option>
+                        <option value={10}>10</option>
+                        <option value={15}>15</option>
+                    </select>
+                </label>
+
                 <table border="1">
                     <thead>
                     <tr>
@@ -105,7 +135,7 @@ const OrganizationListPage = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {organizations.map((org) => (
+                    {paginatedOrganizations.map((org) => (
                         <tr key={org.id}>
                             <td>{org.id}</td>
                             <td>{org.name}</td>
@@ -117,6 +147,30 @@ const OrganizationListPage = () => {
                     ))}
                     </tbody>
                 </table>
+
+                <div>
+                    <button
+                        disabled={currentPage === 1}
+                        onClick={() => handlePageChange(currentPage - 1)}
+                    >
+                        Предыдущая
+                    </button>
+                    {Array.from({ length: totalPages }, (_, index) => (
+                        <button
+                            key={index}
+                            disabled={currentPage === index + 1}
+                            onClick={() => handlePageChange(index + 1)}
+                        >
+                            {index + 1}
+                        </button>
+                    ))}
+                    <button
+                        disabled={currentPage === totalPages}
+                        onClick={() => handlePageChange(currentPage + 1)}
+                    >
+                        Следующая
+                    </button>
+                </div>
             </div>
         </div>
     );
