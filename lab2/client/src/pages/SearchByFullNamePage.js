@@ -7,6 +7,11 @@ const SearchByFullNamePage = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    const formatDate = (timestamp) => {
+        const date = new Date(timestamp);
+        return date.toLocaleDateString(); // Преобразует дату в локальный читаемый формат
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -62,7 +67,7 @@ const SearchByFullNamePage = () => {
                                 <td>{org.id}</td>
                                 <td>{org.name}</td>
                                 <td>{org.fullName}</td>
-                                <td>{org.creationDate}</td>
+                                <td>{formatDate(org.creationDate)}</td>
                                 <td>{org.annualTurnover}</td>
                                 <td>{org.employeesCount}</td>
                                 <td>{org.type}</td>

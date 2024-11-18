@@ -6,6 +6,11 @@ const OrganizationListPage = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    const formatDate = (timestamp) => {
+        const date = new Date(timestamp);
+        return date.toLocaleDateString(); // Преобразует дату в локальный читаемый формат
+    };
+
     const [filters, setFilters] = useState({
         creationDate: "",
         annualTurnover: "",
@@ -104,7 +109,7 @@ const OrganizationListPage = () => {
                         <tr key={org.id}>
                             <td>{org.id}</td>
                             <td>{org.name}</td>
-                            <td>{org.creationDate}</td>
+                            <td>{formatDate(org.creationDate)}</td>
                             <td>{org.annualTurnover}</td>
                             <td>{org.employeesCount}</td>
                             <td>{org.type}</td>

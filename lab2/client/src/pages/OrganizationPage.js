@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
-import {getOrganizationById} from "../api/organizationApi";
+import { getOrganizationById } from "../api/organizationApi";
 
 const OrganizationPage = () => {
     const [organizationId, setOrganizationId] = useState(''); // Состояние для хранения введенного ID
     const [organization, setOrganization] = useState(null); // Состояние для хранения данных об организации
     const [loading, setLoading] = useState(false); // Состояние для отображения загрузки
     const [error, setError] = useState(null); // Состояние для отображения ошибки
+
+    const formatDate = (timestamp) => {
+        const date = new Date(timestamp);
+        return date.toLocaleDateString(); // Преобразует дату в локальный читаемый формат
+    };
 
     const fetchOrganization = async () => {
         if (!organizationId) {
@@ -19,7 +24,7 @@ const OrganizationPage = () => {
             console.log("запрашиваем организацию с id: " + organizationId);
             const response = await getOrganizationById(organizationId);
             console.log("статус получения организации: " + response.status);
-            if (response.status!==200) {
+            if (response.status !== 200) {
                 throw new Error(`Ошибка: ${response.status}`);
             }
             const data = await response.data;
@@ -56,7 +61,7 @@ const OrganizationPage = () => {
                     <h2>Организация: {organization.name}</h2>
                     <p><strong>ID:</strong> {organization.id}</p>
                     <p><strong>Полное название:</strong> {organization.fullName}</p>
-                    <p><strong>Дата создания:</strong> {organization.creationDate}</p>
+                    <p><strong>Дата создания:</strong> {formatDate(organization.creationDate)}</p>
                     <p><strong>Годовой оборот:</strong> {organization.annualTurnover}</p>
                     <p><strong>Количество сотрудников:</strong> {organization.employeesCount}</p>
                     <p><strong>Тип:</strong> {organization.type}</p>
