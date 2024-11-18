@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Path("/organizations")
@@ -125,7 +126,6 @@ public class OrganizationResource {
         return Response.ok(response).build();
     }
 
-
     @GET
     @Path("/search-by-fullname")
     public Response searchByFullName(@QueryParam("substring") String substring) {
@@ -142,6 +142,28 @@ public class OrganizationResource {
         return Response.ok(filteredOrganizations).build();
     }
 
+    @GET
+    @Path("/group-by-address")
+    public Response groupByOfficialAddress() {
+        try {
+            Map<Address, Long> groupedByAddress = organizations.values().stream()
+                    .collect(Collectors.groupingBy(
+                            Organization::getOfficialAddress,
+                            Collectors.counting()
+                    ));
+
+            List<Map<String, Object>> result = groupedByAddress.entrySet().stream()
+                    .map(entry -> Map.of(
+                            "officialAddress", entry.getKey(),
+                            "count", entry.getValue()
+                    ))
+                    .toList();
+
+            return Response.ok(result).build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("An error occurred while grouping by address").build();
+        }
+    }
 
     private Comparator<Organization> applySortOrder(Comparator<Organization> comparator, boolean ascending) {
         return ascending ? comparator : comparator.reversed();
