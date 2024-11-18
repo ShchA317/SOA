@@ -2,10 +2,28 @@ import React, { useState } from "react";
 import { searchByFullName } from "../api/organizationApi";
 
 const SearchByFullNamePage = () => {
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
+    const handlePageSizeChange = (e) => {
+        setPageSize(Number(e.target.value));
+        setCurrentPage(1); // Сбросить текущую страницу при изменении размера
+    };
+
+    const [currentPage, setCurrentPage] = useState(1); // Текущая страница
+
+    const [pageSize, setPageSize] = useState(5); // Количество записей на странице
     const [substring, setSubstring] = useState("");
+
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const startIndex = (currentPage - 1) * pageSize;
+
+    const totalPages = Math.ceil(results.length / pageSize);
+    const endIndex = startIndex + pageSize;
+    const paginatedOrganizations = results.slice(startIndex, endIndex);
 
     const formatDate = (timestamp) => {
         const date = new Date(timestamp);
@@ -49,6 +67,17 @@ const SearchByFullNamePage = () => {
             {results.length > 0 && (
                 <div>
                     <h2>Результаты поиска</h2>
+
+                    <label>
+                        Количество записей на странице:
+                        <select value={pageSize} onChange={handlePageSizeChange}>
+                            <option value={5}>5</option>
+                            <option value={10}>10</option>
+                            <option value={15}>15</option>
+                        </select>
+                    </label>
+
+
                     <table border="1">
                         <thead>
                         <tr>
@@ -62,7 +91,7 @@ const SearchByFullNamePage = () => {
                         </tr>
                         </thead>
                         <tbody>
-                        {results.map((org) => (
+                        {paginatedOrganizations.map((org) => (
                             <tr key={org.id}>
                                 <td>{org.id}</td>
                                 <td>{org.name}</td>
@@ -75,6 +104,30 @@ const SearchByFullNamePage = () => {
                         ))}
                         </tbody>
                     </table>
+
+                    <div>
+                        <button
+                            disabled={currentPage === 1}
+                            onClick={() => handlePageChange(currentPage - 1)}
+                        >
+                            Предыдущая
+                        </button>
+                        {Array.from({length: totalPages}, (_, index) => (
+                            <button
+                                key={index}
+                                disabled={currentPage === index + 1}
+                                onClick={() => handlePageChange(index + 1)}
+                            >
+                                {index + 1}
+                            </button>
+                        ))}
+                        <button
+                            disabled={currentPage === totalPages}
+                            onClick={() => handlePageChange(currentPage + 1)}
+                        >
+                            Следующая
+                        </button>
+                    </div>
                 </div>
             )}
             {results.length === 0 && !loading && <p>Ничего не найдено</p>}
