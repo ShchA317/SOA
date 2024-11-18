@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import './App.css';
 import OrganizationForm from "./pages/OrganizationForm";
 import OrganizationPage from "./pages/OrganizationPage";
 import DeleteOrganizationPage from "./pages/DeleteOrganizationPage";
@@ -10,40 +11,43 @@ import SearchByFullNamePage from "./pages/SearchByFullNamePage";
 
 function Home() {
     return (
-        <div>
-            <h2>Добро пожаловать на главную страницу</h2>
-            <p>Используйте навигацию для перехода к форме добавления организации.</p>
+        <div className="home">
+            <h2>Добро пожаловать! 🌟</h2>
+            <p>Используйте навигацию, чтобы управлять организациями. Да, это правда важно. Наверное.</p>
+            <button onClick={() => alert('Вы нажали на крайне полезную кнопку! 🚀')}>
+                Нажми меня, если хочешь ничего
+            </button>
         </div>
     );
 }
 
 function App() {
-  return (
-      <Router>
-          <nav>
-              <ul>
-                  <li> <Link to="/">Главная</Link> </li>
-                  <li> <Link to="/add-organization">Добавить организацию</Link> </li>
-                  <li> <Link to="/get-organization/">Получить организацию</Link> </li>
-                  <li> <Link to="/delete-organization/">Удалить организацию</Link> </li>
-                  <li> <Link to="/update-organization/">Обновить организацию</Link> </li>
-                  <li> <Link to="/list-organization/">Получить список организаций</Link> </li>
-                  <li> <Link to="/count-organization/">Подсчитать количество организаций</Link> </li>
-                  <li> <Link to="/search-organization/">Искать список организаций по имени</Link> </li>
-              </ul>
-          </nav>
-          <Routes>
-              <Route path="/" element={<Home/>}/>
-              <Route path="/get-organization" element={<OrganizationPage/>}/>
-              <Route path="/add-organization" element={<OrganizationForm onSubmit={(data) => console.log("Данные формы:", data)} />} />
-              <Route path="/delete-organization" element={<DeleteOrganizationPage />} />
-              <Route path="/update-organization" element={<UpdateOrganizationPage />} />
-              <Route path="/list-organization" element={<OrganizationListPage />} />
-              <Route path="/count-organization" element={<CountByEmployeesPage />} />
-              <Route path="/search-organization" element={<SearchByFullNamePage />} />
-          </Routes>
-      </Router>
-  );
+    return (
+        <Router>
+            <nav>
+                <ul>
+                    <li> <Link to="/">Главная</Link> </li>
+                    <li> <Link to="/add-organization">Добавить организацию</Link> </li>
+                    <li> <Link to="/get-organization/">Получить организацию</Link> </li>
+                    <li> <Link to="/delete-organization/">Удалить организацию</Link> </li>
+                    <li> <Link to="/update-organization/">Обновить организацию</Link> </li>
+                    <li> <Link to="/list-organization/">Список организаций</Link> </li>
+                    <li> <Link to="/count-organization/">Подсчитать организации</Link> </li>
+                    <li> <Link to="/search-organization/">Искать организации</Link> </li>
+                </ul>
+            </nav>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/get-organization" element={<OrganizationPage />} />
+                <Route path="/add-organization" element={<OrganizationForm onSubmit={(data) => console.log("Данные формы:", data)} />} />
+                <Route path="/delete-organization" element={<DeleteOrganizationPage />} />
+                <Route path="/update-organization" element={<UpdateOrganizationPage />} />
+                <Route path="/list-organization" element={<OrganizationListPage />} />
+                <Route path="/count-organization" element={<CountByEmployeesPage />} />
+                <Route path="/search-organization" element={<SearchByFullNamePage />} />
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;
