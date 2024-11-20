@@ -1,17 +1,23 @@
 import axios from 'axios';
+import * as https from "https";
+
+const httpsAgent = new https.Agent({
+    rejectUnauthorized: false,
+});
 
 const organizationApiClient = axios.create({
     baseURL: 'http://localhost:8080/organization-1.0.9-SNAPSHOT/api',
     headers: {
         'Content-Type': 'application/json',
-    },
+    }, httpsAgent
 });
 
 const orgManagerApiClient = axios.create({
-    baseURL: 'http://localhost:28791',
+    baseURL: 'https://localhost:28791',
     headers: {
         'Content-Type': 'application/json',
     },
+    httpsAgent,
 });
 
 export const getOrganizations = async (filters) => {

@@ -20,7 +20,7 @@ const HireEmployeePage = () => {
             setError(null);
             setSuccess(null);
 
-            const response = await  hireEmployOrganizations(organizationId, JSON.stringify({ employeeName, position }) )
+            const response = await hireEmployOrganizations(organizationId, JSON.stringify({ employeeName, position }) )
 
             if (response.status !== 200) {
                 if (response.status === 404) {
