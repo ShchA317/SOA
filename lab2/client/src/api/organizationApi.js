@@ -58,3 +58,5 @@ export const searchByFullName = async (substring) => {
 export const groupByOfficialAddress = () => organizationApiClient.get('/organizations/group-by-address');
 
 export const mergeOrganizations = (id1, id2, newName, newAddress) => orgManagerApiClient.post(`/orgmanager/merge/${id1}/${id2}/${encodeURIComponent(newName)}/${encodeURIComponent(newAddress)}`)
+
+export const hireEmployOrganizations = (organizationId, data) => orgManagerApiClient.post(`/orgmanager/hire/${organizationId}`, data)

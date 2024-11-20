@@ -41,4 +41,15 @@ public interface OrganizationsFeignClient extends OrganizationsApi {
     ResponseEntity<Void> deleteOrganizationById(
             @Parameter(name = "id", description = "Уникальный идентификатор организации", required = true, in = ParameterIn.PATH) @PathVariable("id") Integer id
     );
+
+    @RequestMapping(
+            method = RequestMethod.PUT,
+            value = "/organizations/{id}",
+            produces = { "application/json" },
+            consumes = { "application/json" }
+    )
+    ResponseEntity<Organization> updateOrganizationById(
+            @Parameter(name = "id", description = "Уникальный идентификатор организации", required = true, in = ParameterIn.PATH) @PathVariable("id") Integer id,
+            @Parameter(name = "Organization", description = "Обновленные данные организации", required = true) @Valid @RequestBody Organization organization
+    );
 }

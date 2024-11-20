@@ -22,6 +22,7 @@ public class OrgManagerController implements OrgmanagerApi {
     }
 
     @Override
+    @PostMapping("/hire/{id}")
     public ResponseEntity<OrgmanagerHireIdPost200Response> orgmanagerHireIdPost(
             @PathVariable("id") Integer id,
             @Valid @RequestBody OrgmanagerHireIdPostRequest orgmanagerHireIdPostRequest) {
