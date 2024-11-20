@@ -32,6 +32,7 @@ public class OrgManagerController implements OrgmanagerApi {
     }
 
     @Override
+    @PostMapping("/merge/{id1}/{id2}/{new-name}/{new-address}")
     public ResponseEntity<OrgmanagerMergeId1Id2NewNameNewAddressPost200Response> orgmanagerMergeId1Id2NewNameNewAddressPost(
             @PathVariable("id1") Integer id1,
             @PathVariable("id2") Integer id2,

@@ -4,6 +4,11 @@ logging:
   level:
     root: INFO
     soa.lab2: DEBUG
+    feign: DEBUG
+    org:
+      springframework:
+        cloud:
+          openfeign: DEBUG
   file:
     name: logs/myapp.log
 server:

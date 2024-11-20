@@ -9,6 +9,7 @@ import OrganizationListPage from "./pages/OrganizationListPage";
 import CountByEmployeesPage from "./pages/CountByEmployeesPage";
 import SearchByFullNamePage from "./pages/SearchByFullNamePage";
 import OrganizationGroupByAddressPage from "./pages/OrganizationGroupByAddressPage";
+import MergeOrganizationsPage from "./pages/MergeOrganizationsPage";
 
 function Home() {
     return (
@@ -36,6 +37,7 @@ function App() {
                     <li> <Link to="/group-organization/">Группировать организации по адресу</Link> </li>
                     <li> <Link to="/count-organization/">Подсчитать организации</Link> </li>
                     <li> <Link to="/search-organization/">Искать организации</Link> </li>
+                    <li> <Link to="/merge-organizations/">Слить организации</Link> </li>
                 </ul>
             </nav>
             <Routes>
@@ -48,6 +50,7 @@ function App() {
                 <Route path="/count-organization" element={<CountByEmployeesPage />} />
                 <Route path="/search-organization" element={<SearchByFullNamePage />} />
                 <Route path="/group-organization" element={<OrganizationGroupByAddressPage />} />
+                <Route path="/merge-organizations" element={<MergeOrganizationsPage />} />
             </Routes>
         </Router>
     );

@@ -58,9 +58,13 @@ openApiGenerate {
 	inputSpec = "${projectDir}/src/main/resources/spec.yaml"
 	outputDir = "$buildDir/generated"
 
+	typeMappings = ['string+date-time': 'Date']
+	importMappings = ['Date': 'java.util.Date']
+
 	apiPackage = "com.example.api"
 	modelPackage = "com.example.model"
 	additionalProperties = [
+			dateLibrary : 'legacy', // Использовать java.util.Date
 			interfaceOnly: 'true'
 	]
 }
