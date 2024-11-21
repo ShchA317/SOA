@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'soa.lab2'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0-SNAPSHOT'
 sourceCompatibility = '17'
 
 repositories {
@@ -80,7 +80,14 @@ sourceSets {
 jar {
 	manifest {
 		attributes("Implementation-Title": project.name,
-				"Implementation-Version": version)
+				"Implementation-Version": version,
+				"Main-Class": "soa.lab2.orgmanager.OrgManagerApplication")
+	}
+
+	duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+
+	from {
+		configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
 	}
 }
 
