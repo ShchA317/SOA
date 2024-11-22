@@ -5,8 +5,8 @@ logging:
     root: INFO
     soa.lab2: DEBUG
     feign: DEBUG
-    org.eclipse.jetty: INFO
-    org.springframework.boot.web.embedded.jetty: INFO
+    org.eclipse.jetty: DEBUG
+    org.springframework.boot.web.embedded.jetty: DEBUG
     org:
       springframework:
         cloud:

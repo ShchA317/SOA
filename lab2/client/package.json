@@ -23,7 +23,6 @@
     "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts --openssl-legacy-provider build"
   },
-  "proxy": "http://127.0.0.1:8080",
   "eslintConfig": {
     "extends": [
       "react-app",
