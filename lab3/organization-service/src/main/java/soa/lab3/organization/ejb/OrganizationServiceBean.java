@@ -48,7 +48,6 @@ public class OrganizationServiceBean implements OrganizationService {
     public List<Organization> getFilteredOrganizations(String creationDate, Integer annualTurnover, String sort) {
         Stream<Organization> filteredStream = organizations.values().stream();
 
-        // Фильтрация по creationDate
         if (creationDate != null) {
             try {
                 Date filterDate = Date.from(LocalDate.parse(creationDate).atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -58,14 +57,10 @@ public class OrganizationServiceBean implements OrganizationService {
             }
         }
 
-//        // Фильтрация по annualTurnover
-//        if (annualTurnover != null) {
-//            filteredStream = filteredStream.filter(org ->
-//                    org.getAnnualTurnover() != null &&
-//                            org.getAnnualTurnover() < annualTurnover);
-//        }
+        if (annualTurnover != null) {
+            filteredStream = filteredStream.filter(org -> org.getAnnualTurnover() < annualTurnover);
+        }
 
-        // Сортировка
         if (sort != null) {
             String[] sortParams = sort.split(",");
             if (sortParams.length == 2) {
