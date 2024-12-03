@@ -1,8 +1,9 @@
-package soa.lab2.organization;
+package soa.lab3.organization;
 
 
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
+
 import java.util.HashSet;
 import java.util.Set;
 

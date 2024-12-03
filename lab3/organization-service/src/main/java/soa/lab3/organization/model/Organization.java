@@ -1,4 +1,4 @@
-package soa.lab2.organization;
+package soa.lab3.organization.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,11 +7,12 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Date;
 
 @Getter
 @Setter
-public class Organization {
+public class Organization implements Serializable {
 
     @NotNull
     @Positive
