@@ -1,0 +1,28 @@
+2024-11-22T08:55:15.400+03:00  INFO 1826 --- [org-manager] [Test worker] s.l.o.OrgManagerApplicationTests         : Starting OrgManagerApplicationTests using Java 18.0.2 with PID 1826 (started by elizaveta in /Users/Shared/Alexander/Education/SOA/lab2/org-manager)
+2024-11-22T08:55:15.402+03:00 DEBUG 1826 --- [org-manager] [Test worker] s.l.o.OrgManagerApplicationTests         : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-11-22T08:55:15.402+03:00  INFO 1826 --- [org-manager] [Test worker] s.l.o.OrgManagerApplicationTests         : No active profile set, falling back to 1 default profile: "default"
+2024-11-22T08:55:15.574+03:00 DEBUG 1826 --- [org-manager] [Test worker] o.s.c.openfeign.FeignClientsRegistrar$1  : Identified candidate component class: file [/Users/Shared/Alexander/Education/SOA/lab2/org-manager/build/classes/java/main/soa/lab2/orgmanager/client/OrganizationsFeignClient.class]
+2024-11-22T08:55:15.693+03:00  INFO 1826 --- [org-manager] [Test worker] o.s.cloud.context.scope.GenericScope     : BeanFactory id=481c4aa4-4881-3b49-a604-889591b25e63
+2024-11-22T08:55:15.728+03:00 DEBUG 1826 --- [org-manager] [Test worker] o.s.c.openfeign.FeignClientFactoryBean   : Creating a FeignClientFactoryBean.
+2024-11-22T08:55:15.986+03:00  INFO 1826 --- [org-manager] [Test worker] s.l.o.OrgManagerApplicationTests         : Started OrgManagerApplicationTests in 0.915 seconds (process running for 1.369)
+2024-11-22T08:59:50.237+03:00  INFO 1952 --- [org-manager] [Test worker] s.l.o.OrgManagerApplicationTests         : Starting OrgManagerApplicationTests using Java 18.0.2 with PID 1952 (started by elizaveta in /Users/Shared/Alexander/Education/SOA/lab2/org-manager)
+2024-11-22T08:59:50.238+03:00 DEBUG 1952 --- [org-manager] [Test worker] s.l.o.OrgManagerApplicationTests         : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-11-22T08:59:50.238+03:00  INFO 1952 --- [org-manager] [Test worker] s.l.o.OrgManagerApplicationTests         : No active profile set, falling back to 1 default profile: "default"
+2024-11-22T08:59:50.418+03:00 DEBUG 1952 --- [org-manager] [Test worker] o.s.c.openfeign.FeignClientsRegistrar$1  : Identified candidate component class: file [/Users/Shared/Alexander/Education/SOA/lab2/org-manager/build/classes/java/main/soa/lab2/orgmanager/client/OrganizationsFeignClient.class]
+2024-11-22T08:59:50.556+03:00  INFO 1952 --- [org-manager] [Test worker] o.s.cloud.context.scope.GenericScope     : BeanFactory id=481c4aa4-4881-3b49-a604-889591b25e63
+2024-11-22T08:59:50.592+03:00 DEBUG 1952 --- [org-manager] [Test worker] o.s.c.openfeign.FeignClientFactoryBean   : Creating a FeignClientFactoryBean.
+2024-11-22T08:59:50.873+03:00  INFO 1952 --- [org-manager] [Test worker] s.l.o.OrgManagerApplicationTests         : Started OrgManagerApplicationTests in 1.102 seconds (process running for 1.532)
+2024-11-22T09:07:09.828+03:00  INFO 2013 --- [org-manager] [Test worker] s.l.o.OrgManagerApplicationTests         : Starting OrgManagerApplicationTests using Java 18.0.2 with PID 2013 (started by elizaveta in /Users/Shared/Alexander/Education/SOA/lab2/org-manager)
+2024-11-22T09:07:09.829+03:00 DEBUG 2013 --- [org-manager] [Test worker] s.l.o.OrgManagerApplicationTests         : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-11-22T09:07:09.829+03:00  INFO 2013 --- [org-manager] [Test worker] s.l.o.OrgManagerApplicationTests         : No active profile set, falling back to 1 default profile: "default"
+2024-11-22T09:07:10.002+03:00 DEBUG 2013 --- [org-manager] [Test worker] o.s.c.openfeign.FeignClientsRegistrar$1  : Identified candidate component class: file [/Users/Shared/Alexander/Education/SOA/lab2/org-manager/build/classes/java/main/soa/lab2/orgmanager/client/OrganizationsFeignClient.class]
+2024-11-22T09:07:10.119+03:00  INFO 2013 --- [org-manager] [Test worker] o.s.cloud.context.scope.GenericScope     : BeanFactory id=481c4aa4-4881-3b49-a604-889591b25e63
+2024-11-22T09:07:10.153+03:00 DEBUG 2013 --- [org-manager] [Test worker] o.s.c.openfeign.FeignClientFactoryBean   : Creating a FeignClientFactoryBean.
+2024-11-22T09:07:10.412+03:00  INFO 2013 --- [org-manager] [Test worker] s.l.o.OrgManagerApplicationTests         : Started OrgManagerApplicationTests in 1.136 seconds (process running for 1.58)
+2024-11-22T09:09:22.944+03:00  INFO 2066 --- [org-manager] [Test worker] s.l.o.OrgManagerApplicationTests         : Starting OrgManagerApplicationTests using Java 18.0.2 with PID 2066 (started by elizaveta in /Users/Shared/Alexander/Education/SOA/lab2/org-manager)
+2024-11-22T09:09:22.944+03:00 DEBUG 2066 --- [org-manager] [Test worker] s.l.o.OrgManagerApplicationTests         : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-11-22T09:09:22.945+03:00  INFO 2066 --- [org-manager] [Test worker] s.l.o.OrgManagerApplicationTests         : No active profile set, falling back to 1 default profile: "default"
+2024-11-22T09:09:23.119+03:00 DEBUG 2066 --- [org-manager] [Test worker] o.s.c.openfeign.FeignClientsRegistrar$1  : Identified candidate component class: file [/Users/Shared/Alexander/Education/SOA/lab2/org-manager/build/classes/java/main/soa/lab2/orgmanager/client/OrganizationsFeignClient.class]
+2024-11-22T09:09:23.244+03:00  INFO 2066 --- [org-manager] [Test worker] o.s.cloud.context.scope.GenericScope     : BeanFactory id=481c4aa4-4881-3b49-a604-889591b25e63
+2024-11-22T09:09:23.280+03:00 DEBUG 2066 --- [org-manager] [Test worker] o.s.c.openfeign.FeignClientFactoryBean   : Creating a FeignClientFactoryBean.
+2024-11-22T09:09:23.530+03:00  INFO 2066 --- [org-manager] [Test worker] s.l.o.OrgManagerApplicationTests         : Started OrgManagerApplicationTests in 1.063 seconds (process running for 1.49)
