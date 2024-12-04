@@ -28,7 +28,7 @@ public class ConsulServiceListener implements ServletContextListener {
             "Port": 8080,
             "Tags": ["%s"],
             "Check": {
-                "HTTP": "http://127.0.0.1:8080%s/health",
+                "HTTP": "http://127.0.0.1:8080%s/api/health",
                 "Interval": "10s"
             }
         }""".formatted(serviceId, contextPath, contextPath);
