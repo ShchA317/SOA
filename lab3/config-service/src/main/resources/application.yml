@@ -8,6 +8,6 @@ spring:
     config:
       server:
         git:
-          uri: github.com/ShchA317/SOA/lab3/config-service
+          uri: github.com/ShchA317/SOA/tree/main/lab3/config-service
           default-label: main
           search-paths: "{application}"
