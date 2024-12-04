@@ -7,13 +7,14 @@ import jakarta.ws.rs.core.Application;
 import java.util.HashSet;
 import java.util.Set;
 
-@ApplicationPath("/api")  // Определяем корневой путь для всех RESTful сервисов
+@ApplicationPath("/api")
 public class OrganizationApp extends Application {
 
     @Override
     public Set<Class<?>> getClasses() {
         Set<Class<?>> resources = new HashSet<>();
-        resources.add(OrganizationResource.class);  // Регистрируем наш ресурсный класс
+        resources.add(OrganizationResource.class);
+        resources.add(HealthCheckResource.class);
         return resources;
     }
 }
