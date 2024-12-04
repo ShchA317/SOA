@@ -14,5 +14,4 @@ spring:
             - '{application}'
             - org-manager
           default-label: main
-          clone-on-start: true
           force-pull: true
