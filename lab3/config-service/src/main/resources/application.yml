@@ -10,9 +10,7 @@ spring:
         git:
           uri: https://github.com/ShchA317/SOA.git
           basedir: lab3/config-service
+          search-paths: '{application}'
           default-label: main
-          search-paths:
-            - "{application}"
-            - org-manager
-            - .
-            - /
+          clone-on-start: true
+          force-pull: true
