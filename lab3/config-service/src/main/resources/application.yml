@@ -8,7 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: github.com/ShchA317/SOA
-          basedir: lab3/config-service
+          uri: https://github.com/ShchA317/SOA.git
+          basedir: /lab3/config-service
           default-label: main
           search-paths: "{application}"
