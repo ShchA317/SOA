@@ -12,4 +12,7 @@ spring:
           basedir: lab3/config-service
           default-label: main
           search-paths:
+            - "{application}"
             - org-manager
+            - .
+            - /
