@@ -45,8 +45,10 @@ dependencies {
 
     implementation 'io.swagger.core.v3:swagger-annotations:2.2.15'
 
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-config
+	implementation 'org.springframework.cloud:spring-cloud-starter-config:4.1.3'
 }
 
 springBoot {
