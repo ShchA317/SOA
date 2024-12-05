@@ -1,10 +1,10 @@
 spring:
   application.name: org-manager
   config:
-    import: configserver:http://localhost:8888
+    import: configserver:http://localhost:8889
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: http://localhost:8889
       profile: dev
       label: main
       enabled: true
