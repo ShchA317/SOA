@@ -8,6 +8,6 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/ShchA317/SOA.git
+          uri: https://github.com/ShchA317/SOA/
           default-label: main
-          force-pull: true
+          search-paths: lab3/config-service/src/main/resources/
