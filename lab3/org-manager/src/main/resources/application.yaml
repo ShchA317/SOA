@@ -1,36 +1,10 @@
 spring:
-  application:
-    name: org-manager
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include=*:
-
-logging:
-  level:
-    root: INFO
-    soa.lab2: DEBUG
-    feign: DEBUG
-    org.eclipse.jetty: DEBUG
-    org.springframework.boot.web.embedded.jetty: DEBUG
-    org:
-      springframework:
-        cloud:
-          openfeign: DEBUG
-  file:
-    name: logs/myapp.log
-
-
-server:
-  port: 28791
-  ssl:
-    key-store: classpath:keystore.jks
-    key-store-password: password
-    key-password: password
-    key-store-type: JKS
-  jetty:
-    ssl:
-      sni-host-check: false
-
+  application.name: org-manager
+  config:
+    import: configserver:http://localhost:8889
+  cloud:
+    config:
+      uri: http://localhost:8889
+      profile: dev
+      label: main
+      enabled: true
