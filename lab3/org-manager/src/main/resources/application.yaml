@@ -1,4 +1,12 @@
-spring.application.name: org-manager
+spring:
+  application:
+    name: org-manager
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include=*:
 
 logging:
   level:
