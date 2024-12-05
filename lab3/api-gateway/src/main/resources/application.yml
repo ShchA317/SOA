@@ -1,0 +1,17 @@
+server:
+  port: 8777
+
+zuul:
+  routes:
+    org-manager:
+      path: /orgmanager/**
+      url: http://localhost:28791
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+spring:
+  application:
+    name: api-gateway
