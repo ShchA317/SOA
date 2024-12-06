@@ -7,7 +7,6 @@ spring:
 
 eureka:
   instance:
-    network-interface: eth0
     hostname: localhost
     ip-address: localhost
   client:
