@@ -1,0 +1,16 @@
+{
+  "instance": {
+    "instanceId": "localhost:organization-service",
+    "hostName": "localhost",
+    "app": "ORGANIZATION-SERVICE",
+    "ipAddr": "127.0.0.1",
+    "status": "UP",
+    "port": { "$": 8080, "@enabled": true },
+    "vipAddress": "localhost",
+    "secureVipAddress": "localhost",
+    "dataCenterInfo": {
+      "@class": "com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo",
+      "name": "MyOwn"
+    }
+  }
+}

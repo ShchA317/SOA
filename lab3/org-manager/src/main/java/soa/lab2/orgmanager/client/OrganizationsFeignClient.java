@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@FeignClient(name = "Organizations", url = "http://localhost:28792/organization-1.0.9-SNAPSHOT/api/")
+@FeignClient(name = "organization-service", url = "http://localhost:8080", path = "/org-service/api")
 public interface OrganizationsFeignClient extends OrganizationsApi {
 
     @Override

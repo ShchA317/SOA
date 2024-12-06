@@ -1,11 +1,14 @@
 server:
-  port: 8777
+  port: 8776
 
 zuul:
   routes:
     org-manager:
       path: /orgmanager/**
-      url: http://localhost:28791
+      url: http://localhost:8889/orgmanager
+    org-service:
+      path: /org-service/api/**
+      url: http://localhost:8080//org-service/api
 
 eureka:
   client:

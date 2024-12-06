@@ -1,10 +1,20 @@
 spring:
-  application.name: org-manager
+  application:
+    name: org-manager
   config:
-    import: configserver:http://localhost:8889
+    import: configserver:http://localhost:8888
   cloud:
+    consul:
+      discovery:
+        enabled: false
     config:
-      uri: http://localhost:8889
+      uri: http://localhost:8888
       profile: dev
       label: main
       enabled: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+      fetchRegistry: true
