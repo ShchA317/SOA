@@ -8,8 +8,6 @@ spring:
 eureka:
   instance:
     instance-id: "127.0.0.1:org-manager:8889"
-    hostname: localhost
-    ip-address: localhost
     prefer-ip-address: true
   client:
     service-url:
