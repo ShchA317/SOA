@@ -7,7 +7,7 @@ spring:
 
 eureka:
   instance:
-    instance-id: "localhost:org-manager:8889"
+    instance-id: "127.0.0.1:org-manager:8889"
     hostname: localhost
     ip-address: localhost
     prefer-ip-address: true
