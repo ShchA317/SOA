@@ -30,8 +30,8 @@ public class EurekaRegistrar {
                                "ipAddr": "%s",
                                "status": "UP",
                                "port": { "$": %d, "@enabled": true },
-                               "vipAddress": "localhost",
-                               "secureVipAddress": "localhost",
+                               "vipAddress": "organization-service",
+                               "secureVipAddress": "organization-service",
                                "dataCenterInfo": {
                                  "@class": "com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo",
                                  "name": "MyOwn"

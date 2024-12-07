@@ -6,14 +6,14 @@ const httpsAgent = new https.Agent({
 });
 
 const organizationApiClient = axios.create({
-    baseURL: 'http://localhost:28792/organization-1.0.9-SNAPSHOT/api',
+    baseURL: 'http://localhost:8776/org-service/api',
     headers: {
         'Content-Type': 'application/json',
     }, httpsAgent
 });
 
 const orgManagerApiClient = axios.create({
-    baseURL: 'https://localhost:28791',
+    baseURL: 'https://localhost:8776',
     headers: {
         'Content-Type': 'application/json',
     },

@@ -22,6 +22,7 @@ public class ConsulConfigUpdateJob {
 
     @EventListener(ContextStartedEvent.class)
     public void doSomethingAfterStartup() {
+        System.out.println("Context");
         consulSync.syncServices();
     }
 }
