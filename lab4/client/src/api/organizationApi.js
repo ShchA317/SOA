@@ -13,7 +13,7 @@ const organizationApiClient = axios.create({
 });
 
 const orgManagerApiClient = axios.create({
-    baseURL: 'http://localhost:8888',
+    baseURL: 'http://localhost:28791/api',
     headers: {
         'Content-Type': 'application/json',
     },
