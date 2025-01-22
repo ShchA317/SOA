@@ -1,0 +1,10 @@
+server:
+  port: 8084
+  ssl:
+    key-store: classpath:keystore.jks
+    key-store-password: password
+    key-password: password
+    key-store-type: JKS
+  jetty:
+    ssl:
+      sni-host-check: false

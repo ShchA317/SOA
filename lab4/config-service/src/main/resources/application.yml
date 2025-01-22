@@ -1,0 +1,13 @@
+server:
+  port: 8889
+
+spring:
+  application:
+    name: config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ShchA317/SOA/
+          default-label: main
+          search-paths: lab3/config-service/src/main/resources/
