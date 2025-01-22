@@ -1,5 +1,5 @@
 server:
-  port: 8889
+  port: 8888
 
 spring:
   application:
@@ -10,4 +10,4 @@ spring:
         git:
           uri: https://github.com/ShchA317/SOA/
           default-label: main
-          search-paths: lab3/config-service/src/main/resources/
+          search-paths: lab3/config-service

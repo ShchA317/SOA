@@ -1,0 +1,34 @@
+server:
+  port: 8776
+
+zuul:
+  routes:
+    org-manager:
+      path: /orgmanager/**
+      serviceId: org-manager
+      stripPrefix: false
+    organization-service:
+      path: /org-service/api/**
+#      url: http://localhost:8080//org-service/api
+      serviceId: organization-service
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: true
+
+spring:
+  application:
+    name: api-gateway
+
+org-manager:
+  ribbon:
+    eureka:
+      enabled: true
+    listOfServers: localhost:8889,localhost:8890
+
+organization-service:
+  ribbon:
+    eureka:
+      enabled: true
+    listOfServers: localhost:8080

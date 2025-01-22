@@ -26,6 +26,7 @@ public class OrgManagerController implements OrgmanagerApi {
     public ResponseEntity<OrgmanagerHireIdPost200Response> orgmanagerHireIdPost(
             @PathVariable("id") Integer id,
             @Valid @RequestBody OrgmanagerHireIdPostRequest orgmanagerHireIdPostRequest) {
+        System.out.println("instance 1");
 
         orgManagerService.hireEmployee(id, orgmanagerHireIdPostRequest);
 
