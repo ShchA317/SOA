@@ -6,7 +6,7 @@ const httpsAgent = new https.Agent({
 });
 
 const organizationApiClient = axios.create({
-    baseURL: 'http://localhost:28792/organization-1.0.9-SNAPSHOT/api',
+    baseURL: 'http://localhost:8080/organization-2.0.3-SNAPSHOT/api',
     headers: {
         'Content-Type': 'application/json',
     }, httpsAgent

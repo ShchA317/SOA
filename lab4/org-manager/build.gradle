@@ -1,0 +1,104 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.5'
+    id 'io.spring.dependency-management' version '1.1.3'
+    id 'org.openapi.generator' version '7.0.0'
+}
+
+group = 'soa.lab3'
+version = '2.0.0-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    set('springCloudVersion', "2023.0.4")
+}
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-web') {
+        exclude group: 'org.apache.tomcat.embed', module: 'tomcat-embed-el'
+        exclude group: 'org.apache.tomcat.embed', module: 'tomcat-embed-core'
+        exclude group: 'org.apache.tomcat.embed', module: 'tomcat-embed-websocket'
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    }
+
+    implementation 'org.springframework.boot:spring-boot-starter-jetty'
+
+    // spring cloud
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
+
+    implementation 'org.springframework.boot:spring-boot-starter-validation' // Для валидации моделей
+
+    // OpenAPI dependencies (если нужны дополнительные зависимости для генерации клиентов)
+    implementation 'javax.annotation:javax.annotation-api:1.3.2'
+    implementation 'org.hibernate.validator:hibernate-validator:6.2.5.Final'
+    implementation 'javax.validation:validation-api:2.0.1.Final'
+    implementation 'org.openapitools:jackson-databind-nullable:0.2.4'
+    compileOnly 'javax.servlet:servlet-api:2.5'
+
+    implementation 'io.swagger.core.v3:swagger-annotations:2.2.15'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-config
+	implementation 'org.springframework.cloud:spring-cloud-starter-config:4.1.3'
+}
+
+springBoot {
+    mainClass.set("soa.lab2.orgmanager.OrgManagerApplication")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:2023.0.2"
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+openApiGenerate {
+    generatorName = "spring"
+    inputSpec = "${projectDir}/src/main/resources/spec.yaml"
+    outputDir = "$buildDir/generated"
+
+    typeMappings = ['string+date-time': 'Date']
+    importMappings = ['Date': 'java.util.Date']
+
+    apiPackage = "com.example.api"
+    modelPackage = "com.example.model"
+    additionalProperties = [
+            dateLibrary  : 'legacy', // Использовать java.util.Date
+            interfaceOnly: 'true'
+    ]
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir "$buildDir/generated/src/main/java"
+        }
+    }
+}
+
+jar {
+    manifest {
+        attributes("Implementation-Title": project.name,
+                "Implementation-Version": version,
+                "Main-Class": "soa.lab2.orgmanager.OrgManagerApplication")
+    }
+
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+

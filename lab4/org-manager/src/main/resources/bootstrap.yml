@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: org-manager
+  config:
+    import: optional:configserver:http://localhost:8889/
+  cloud:
+    config:
+      uri: http://localhost:8889/
+      label: main
+
+
