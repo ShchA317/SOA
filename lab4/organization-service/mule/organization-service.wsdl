@@ -1,0 +1,169 @@
+<definitions xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://organization.lab4.soa/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://organization.lab4.soa/" name="OrganizationServiceBeanService">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://organization.lab4.soa/" schemaLocation="http://localhost:8080/ws/organization?xsd=1"/>
+        </xsd:schema>
+    </types>
+    <message name="createOrganization">
+        <part name="parameters" element="tns:createOrganization"/>
+    </message>
+    <message name="createOrganizationResponse">
+        <part name="parameters" element="tns:createOrganizationResponse"/>
+    </message>
+    <message name="updateOrganization">
+        <part name="parameters" element="tns:updateOrganization"/>
+    </message>
+    <message name="updateOrganizationResponse">
+        <part name="parameters" element="tns:updateOrganizationResponse"/>
+    </message>
+    <message name="deleteOrganization">
+        <part name="parameters" element="tns:deleteOrganization"/>
+    </message>
+    <message name="deleteOrganizationResponse">
+        <part name="parameters" element="tns:deleteOrganizationResponse"/>
+    </message>
+    <message name="getFilteredOrganizations">
+        <part name="parameters" element="tns:getFilteredOrganizations"/>
+    </message>
+    <message name="getFilteredOrganizationsResponse">
+        <part name="parameters" element="tns:getFilteredOrganizationsResponse"/>
+    </message>
+    <message name="countByEmployeesCount">
+        <part name="parameters" element="tns:countByEmployeesCount"/>
+    </message>
+    <message name="countByEmployeesCountResponse">
+        <part name="parameters" element="tns:countByEmployeesCountResponse"/>
+    </message>
+    <message name="searchByFullName">
+        <part name="parameters" element="tns:searchByFullName"/>
+    </message>
+    <message name="searchByFullNameResponse">
+        <part name="parameters" element="tns:searchByFullNameResponse"/>
+    </message>
+    <message name="groupByAddress">
+        <part name="parameters" element="tns:groupByAddress"/>
+    </message>
+    <message name="groupByAddressResponse">
+        <part name="parameters" element="tns:groupByAddressResponse"/>
+    </message>
+    <message name="getOrganization">
+        <part name="parameters" element="tns:getOrganization"/>
+    </message>
+    <message name="getOrganizationResponse">
+        <part name="parameters" element="tns:getOrganizationResponse"/>
+    </message>
+    <portType name="OrganizationServiceBean">
+        <operation name="createOrganization">
+            <input wsam:Action="http://organization.lab4.soa/OrganizationServiceBean/createOrganizationRequest" message="tns:createOrganization"/>
+            <output wsam:Action="http://organization.lab4.soa/OrganizationServiceBean/createOrganizationResponse" message="tns:createOrganizationResponse"/>
+        </operation>
+        <operation name="updateOrganization">
+            <input wsam:Action="http://organization.lab4.soa/OrganizationServiceBean/updateOrganizationRequest" message="tns:updateOrganization"/>
+            <output wsam:Action="http://organization.lab4.soa/OrganizationServiceBean/updateOrganizationResponse" message="tns:updateOrganizationResponse"/>
+        </operation>
+        <operation name="deleteOrganization">
+            <input wsam:Action="http://organization.lab4.soa/OrganizationServiceBean/deleteOrganizationRequest" message="tns:deleteOrganization"/>
+            <output wsam:Action="http://organization.lab4.soa/OrganizationServiceBean/deleteOrganizationResponse" message="tns:deleteOrganizationResponse"/>
+        </operation>
+        <operation name="getFilteredOrganizations">
+            <input wsam:Action="http://organization.lab4.soa/OrganizationServiceBean/getFilteredOrganizationsRequest" message="tns:getFilteredOrganizations"/>
+            <output wsam:Action="http://organization.lab4.soa/OrganizationServiceBean/getFilteredOrganizationsResponse" message="tns:getFilteredOrganizationsResponse"/>
+        </operation>
+        <operation name="countByEmployeesCount">
+            <input wsam:Action="http://organization.lab4.soa/OrganizationServiceBean/countByEmployeesCountRequest" message="tns:countByEmployeesCount"/>
+            <output wsam:Action="http://organization.lab4.soa/OrganizationServiceBean/countByEmployeesCountResponse" message="tns:countByEmployeesCountResponse"/>
+        </operation>
+        <operation name="searchByFullName">
+            <input wsam:Action="http://organization.lab4.soa/OrganizationServiceBean/searchByFullNameRequest" message="tns:searchByFullName"/>
+            <output wsam:Action="http://organization.lab4.soa/OrganizationServiceBean/searchByFullNameResponse" message="tns:searchByFullNameResponse"/>
+        </operation>
+        <operation name="groupByAddress">
+            <input wsam:Action="http://organization.lab4.soa/OrganizationServiceBean/groupByAddressRequest" message="tns:groupByAddress"/>
+            <output wsam:Action="http://organization.lab4.soa/OrganizationServiceBean/groupByAddressResponse" message="tns:groupByAddressResponse"/>
+        </operation>
+        <operation name="getOrganization">
+            <input wsam:Action="http://organization.lab4.soa/OrganizationServiceBean/getOrganizationRequest" message="tns:getOrganization"/>
+            <output wsam:Action="http://organization.lab4.soa/OrganizationServiceBean/getOrganizationResponse" message="tns:getOrganizationResponse"/>
+        </operation>
+    </portType>
+    <binding name="OrganizationServiceBeanPortBinding" type="tns:OrganizationServiceBean">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="createOrganization">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="updateOrganization">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="deleteOrganization">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getFilteredOrganizations">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="countByEmployeesCount">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="searchByFullName">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="groupByAddress">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getOrganization">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="OrganizationServiceBeanService">
+        <port name="OrganizationServiceBeanPort" binding="tns:OrganizationServiceBeanPortBinding">
+            <soap:address location="http://localhost:8080/ws/organization"/>
+        </port>
+    </service>
+</definitions>

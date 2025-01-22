@@ -1,15 +1,14 @@
-package soa.lab3.organization.ejb;
+package soa.lab4.organization;
 
-import jakarta.ejb.Remote;
-import soa.lab3.organization.model.Address;
-import soa.lab3.organization.model.Organization;
+import javax.jws.WebService;
 
-import java.io.Serializable;
+import soa.lab4.organization.model.AddressGroup;
+import soa.lab4.organization.model.Organization;
+
 import java.util.List;
-import java.util.Map;
 
-@Remote
-public interface OrganizationService extends Serializable {
+@WebService(serviceName = "OrganizationService", portName = "OrganizationServicePort")
+public interface OrganizationService {
     Organization getOrganization(Long id);
     Organization createOrganization(Organization organization);
     Organization updateOrganization(Long id, Organization updatedOrganization);
@@ -17,5 +16,6 @@ public interface OrganizationService extends Serializable {
     List<Organization> getFilteredOrganizations(String creationDate, Integer annualTurnover, String sort);
     long countByEmployeesCount(Long count);
     List<Organization> searchByFullName(String substring);
-    Map<Address, Long> groupByOfficialAddress();
+
+    List<AddressGroup> groupByOfficialAddress();
 }
